@@ -1,0 +1,77 @@
+module main
+
+import std.io
+
+// Bubble sort algorithm
+fn bubble_sort(arr: array<i32>, size: i32) -> void {
+    let i: i32 = 0
+    while i < size - 1 {
+        let j: i32 = 0
+        while j < size - i - 1 {
+            if arr[j] > arr[j + 1] {
+                // Swap elements
+                let temp: i32 = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            }
+            j = j + 1
+        }
+        i = i + 1
+    }
+}
+
+// Print array
+fn print_array(arr: array<i32>, size: i32) -> Result<void, Error> {
+    let i: i32 = 0
+    while i < size {
+        io.print(arr[i], " ")?
+        i = i + 1
+    }
+    io.println("")?
+    return Ok(void)
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== Bubble Sort Algorithm ===")?
+
+    // Example 1: Small array
+    io.println("\nExample 1: Sorting small array")?
+    let arr1: array<i32> = [64, 34, 25, 12, 22, 11, 90]
+    let size1: i32 = 7
+
+    io.print("Before sorting: ")?
+    print_array(arr1, size1)?
+
+    bubble_sort(arr1, size1)
+
+    io.print("After sorting:  ")?
+    print_array(arr1, size1)?
+
+    // Example 2: Already sorted array
+    io.println("\nExample 2: Already sorted array")?
+    let arr2: array<i32> = [1, 2, 3, 4, 5]
+    let size2: i32 = 5
+
+    io.print("Before sorting: ")?
+    print_array(arr2, size2)?
+
+    bubble_sort(arr2, size2)
+
+    io.print("After sorting:  ")?
+    print_array(arr2, size2)?
+
+    // Example 3: Reverse sorted array
+    io.println("\nExample 3: Reverse sorted array")?
+    let arr3: array<i32> = [5, 4, 3, 2, 1]
+    let size3: i32 = 5
+
+    io.print("Before sorting: ")?
+    print_array(arr3, size3)?
+
+    bubble_sort(arr3, size3)
+
+    io.print("After sorting:  ")?
+    print_array(arr3, size3)?
+
+    return Ok(void)
+}

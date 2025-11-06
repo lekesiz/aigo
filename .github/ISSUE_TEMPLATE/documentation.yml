@@ -1,0 +1,80 @@
+name: 📖 Documentation Issue
+description: Report an issue with documentation or suggest improvements
+title: "[Docs]: "
+labels: ["documentation", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve AIGo documentation! Thank you for your feedback.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation issue is this?
+      options:
+        - Missing documentation
+        - Incorrect or outdated information
+        - Unclear explanation
+        - Typo or grammar error
+        - Code example issues
+        - Formatting problems
+        - Broken links
+        - Translation issue
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Document Location
+      description: URL or file path of the documentation
+      placeholder: "README.md or https://github.com/aigo-lang/aigo/blob/main/docs/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue Description
+      description: What's wrong with the current documentation?
+      placeholder: The documentation says... but it should...
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: How should the documentation be improved?
+      placeholder: |
+        The documentation should instead explain...
+
+        Example:
+        ```
+        Better wording or code example
+        ```
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Why is this improvement needed?
+      placeholder: This would help users who...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Can you help fix this?
+      options:
+        - label: I can submit a PR to fix this documentation issue
+          required: false

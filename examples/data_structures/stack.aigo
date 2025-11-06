@@ -1,0 +1,95 @@
+module main
+
+import std.io
+
+// Stack implementation using array
+struct Stack {
+    data: array<i32>
+    top: i32
+    capacity: i32
+}
+
+fn stack_new(capacity: i32) -> Stack {
+    return Stack {
+        data: array<i32>(capacity, 0),
+        top: -1,
+        capacity: capacity
+    }
+}
+
+fn stack_is_empty(s: Stack) -> bool {
+    return s.top == -1
+}
+
+fn stack_is_full(s: Stack) -> bool {
+    return s.top == s.capacity - 1
+}
+
+fn stack_push(s: Stack, value: i32) -> bool {
+    if stack_is_full(s) {
+        return false
+    }
+    s.top = s.top + 1
+    s.data[s.top] = value
+    return true
+}
+
+fn stack_pop(s: Stack) -> i32 {
+    if stack_is_empty(s) {
+        return -1  // Error value
+    }
+    let value: i32 = s.data[s.top]
+    s.top = s.top - 1
+    return value
+}
+
+fn stack_peek(s: Stack) -> i32 {
+    if stack_is_empty(s) {
+        return -1  // Error value
+    }
+    return s.data[s.top]
+}
+
+fn stack_size(s: Stack) -> i32 {
+    return s.top + 1
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== Stack Data Structure ===")?
+
+    // Create a stack
+    let stack: Stack = stack_new(10)
+
+    // Push elements
+    io.println("\nPushing elements: 10, 20, 30, 40, 50")?
+    stack_push(stack, 10)
+    stack_push(stack, 20)
+    stack_push(stack, 30)
+    stack_push(stack, 40)
+    stack_push(stack, 50)
+
+    io.println("Stack size:", stack_size(stack))?
+    io.println("Top element:", stack_peek(stack))?
+
+    // Pop elements
+    io.println("\nPopping elements:")?
+    while !stack_is_empty(stack) {
+        let value: i32 = stack_pop(stack)
+        io.println("Popped:", value)?
+    }
+
+    io.println("Stack is now empty:", stack_is_empty(stack))?
+
+    // Balanced parentheses checker using stack
+    io.println("\n=== Balanced Parentheses Checker ===")?
+
+    let expr1: string = "((()))"
+    io.println("Expression:", expr1)?
+    // Stack-based validation would go here
+
+    let expr2: string = "(()"
+    io.println("Expression:", expr2)?
+    // Stack-based validation would go here
+
+    return Ok(void)
+}

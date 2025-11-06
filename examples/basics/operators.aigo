@@ -1,0 +1,67 @@
+module main
+
+import std.io
+
+fn main() -> Result<void, Error> {
+    // Arithmetic operators
+    let a: i32 = 10
+    let b: i32 = 3
+
+    io.println("=== Arithmetic Operators ===")?
+    io.println("a =", a, ", b =", b)?
+    io.println("a + b =", a + b)?
+    io.println("a - b =", a - b)?
+    io.println("a * b =", a * b)?
+    io.println("a / b =", a / b)?
+    io.println("a % b =", a % b)?
+
+    // Comparison operators
+    io.println("\n=== Comparison Operators ===")?
+    io.println("a == b:", a == b)?
+    io.println("a != b:", a != b)?
+    io.println("a > b:", a > b)?
+    io.println("a < b:", a < b)?
+    io.println("a >= b:", a >= b)?
+    io.println("a <= b:", a <= b)?
+
+    // Logical operators
+    let x: bool = true
+    let y: bool = false
+
+    io.println("\n=== Logical Operators ===")?
+    io.println("x =", x, ", y =", y)?
+    io.println("x && y:", x && y)?
+    io.println("x || y:", x || y)?
+    io.println("!x:", !x)?
+    io.println("!y:", !y)?
+
+    // Complex expressions
+    io.println("\n=== Complex Expressions ===")?
+    let result1: i32 = (a + b) * 2
+    io.println("(a + b) * 2 =", result1)?
+
+    let result2: i32 = a * b + a / b
+    io.println("a * b + a / b =", result2)?
+
+    let result3: bool = (a > b) && (b > 0)
+    io.println("(a > b) && (b > 0) =", result3)?
+
+    let result4: bool = (a == 10) || (b == 10)
+    io.println("(a == 10) || (b == 10) =", result4)?
+
+    // String concatenation
+    io.println("\n=== String Operations ===")?
+    let first_name: string = "John"
+    let last_name: string = "Doe"
+    let full_name: string = first_name + " " + last_name
+    io.println("Full name:", full_name)?
+
+    // Float arithmetic
+    io.println("\n=== Float Arithmetic ===")?
+    let pi: f64 = 3.14159
+    let radius: f64 = 5.0
+    let area: f64 = pi * radius * radius
+    io.println("Circle area (radius", radius, "):", area)?
+
+    return Ok(void)
+}

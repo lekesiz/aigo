@@ -1,0 +1,99 @@
+module main
+
+import std.io
+
+// Binary search algorithm (iterative)
+fn binary_search(arr: array<i32>, size: i32, target: i32) -> i32 {
+    let left: i32 = 0
+    let right: i32 = size - 1
+
+    while left <= right {
+        let mid: i32 = left + (right - left) / 2
+
+        if arr[mid] == target {
+            return mid
+        }
+
+        if arr[mid] < target {
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+
+    return -1  // Not found
+}
+
+// Linear search for comparison
+fn linear_search(arr: array<i32>, size: i32, target: i32) -> i32 {
+    let i: i32 = 0
+    while i < size {
+        if arr[i] == target {
+            return i
+        }
+        i = i + 1
+    }
+    return -1  // Not found
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== Binary Search Algorithm ===")?
+
+    // Sorted array for binary search
+    let arr: array<i32> = [2, 5, 8, 12, 16, 23, 38, 45, 56, 67, 78]
+    let size: i32 = 11
+
+    io.print("Array: ")?
+    let i: i32 = 0
+    while i < size {
+        io.print(arr[i], " ")?
+        i = i + 1
+    }
+    io.println("")?
+
+    // Test binary search with different targets
+    io.println("\nBinary Search Results:")?
+
+    let target1: i32 = 23
+    let index1: i32 = binary_search(arr, size, target1)
+    if index1 != -1 {
+        io.println("Found", target1, "at index", index1)?
+    } else {
+        io.println(target1, "not found")?
+    }
+
+    let target2: i32 = 56
+    let index2: i32 = binary_search(arr, size, target2)
+    if index2 != -1 {
+        io.println("Found", target2, "at index", index2)?
+    } else {
+        io.println(target2, "not found")?
+    }
+
+    let target3: i32 = 100
+    let index3: i32 = binary_search(arr, size, target3)
+    if index3 != -1 {
+        io.println("Found", target3, "at index", index3)?
+    } else {
+        io.println(target3, "not found")?
+    }
+
+    let target4: i32 = 2
+    let index4: i32 = binary_search(arr, size, target4)
+    if index4 != -1 {
+        io.println("Found", target4, "at index", index4)?
+    } else {
+        io.println(target4, "not found")?
+    }
+
+    // Compare with linear search
+    io.println("\nComparison with Linear Search:")?
+    let target5: i32 = 67
+    let binary_result: i32 = binary_search(arr, size, target5)
+    let linear_result: i32 = linear_search(arr, size, target5)
+
+    io.println("Binary search found", target5, "at index", binary_result)?
+    io.println("Linear search found", target5, "at index", linear_result)?
+
+    return Ok(void)
+}

@@ -1,0 +1,124 @@
+module main
+
+import std.io
+
+// Check if a number is prime
+fn is_prime(n: i32) -> bool {
+    if n <= 1 {
+        return false
+    }
+
+    if n == 2 {
+        return true
+    }
+
+    if n % 2 == 0 {
+        return false
+    }
+
+    let i: i32 = 3
+    while i * i <= n {
+        if n % i == 0 {
+            return false
+        }
+        i = i + 2
+    }
+
+    return true
+}
+
+// Find all primes up to n using Sieve of Eratosthenes
+fn sieve_of_eratosthenes(n: i32) -> array<bool> {
+    let is_prime_arr: array<bool> = array<bool>(n + 1, true)
+
+    is_prime_arr[0] = false
+    is_prime_arr[1] = false
+
+    let i: i32 = 2
+    while i * i <= n {
+        if is_prime_arr[i] {
+            let j: i32 = i * i
+            while j <= n {
+                is_prime_arr[j] = false
+                j = j + i
+            }
+        }
+        i = i + 1
+    }
+
+    return is_prime_arr
+}
+
+// Find the nth prime number
+fn nth_prime(n: i32) -> i32 {
+    let count: i32 = 0
+    let num: i32 = 2
+
+    while count < n {
+        if is_prime(num) {
+            count = count + 1
+            if count == n {
+                return num
+            }
+        }
+        num = num + 1
+    }
+
+    return -1
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== Prime Numbers ===")?
+
+    // Test is_prime function
+    io.println("\nTesting is_prime function:")?
+    let test_nums: array<i32> = [2, 3, 4, 17, 20, 29, 31, 100]
+    let i: i32 = 0
+    while i < 8 {
+        let num: i32 = test_nums[i]
+        let prime: bool = is_prime(num)
+        io.print(num)?
+        if prime {
+            io.println(" is prime")?
+        } else {
+            io.println(" is not prime")?
+        }
+        i = i + 1
+    }
+
+    // Print first N primes
+    io.println("\nFirst 20 prime numbers:")?
+    let count: i32 = 1
+    while count <= 20 {
+        let prime: i32 = nth_prime(count)
+        io.print(prime, " ")?
+        if count % 10 == 0 {
+            io.println("")?
+        }
+        count = count + 1
+    }
+    io.println("")?
+
+    // Find primes in a range
+    io.println("\nPrimes between 50 and 100:")?
+    let num: i32 = 50
+    while num <= 100 {
+        if is_prime(num) {
+            io.print(num, " ")?
+        }
+        num = num + 1
+    }
+    io.println("")?
+
+    // Twin primes
+    io.println("\nTwin primes (p, p+2) up to 100:")?
+    let p: i32 = 2
+    while p <= 98 {
+        if is_prime(p) && is_prime(p + 2) {
+            io.println("(", p, ",", p + 2, ")")?
+        }
+        p = p + 1
+    }
+
+    return Ok(void)
+}

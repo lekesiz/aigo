@@ -1,0 +1,68 @@
+module main
+
+import std.io
+
+fn main() -> Result<void, Error> {
+    // If statement
+    let age: i32 = 18
+    if age >= 18 {
+        io.println("You are an adult")?
+    }
+
+    // If-else statement
+    let score: i32 = 85
+    if score >= 90 {
+        io.println("Grade: A")?
+    } else if score >= 80 {
+        io.println("Grade: B")?
+    } else if score >= 70 {
+        io.println("Grade: C")?
+    } else {
+        io.println("Grade: F")?
+    }
+
+    // While loop - count to 5
+    io.println("Counting to 5:")?
+    let counter: i32 = 1
+    while counter <= 5 {
+        io.println(counter)?
+        counter = counter + 1
+    }
+
+    // While loop - sum numbers
+    let sum: i32 = 0
+    let i: i32 = 1
+    while i <= 10 {
+        sum = sum + i
+        i = i + 1
+    }
+    io.println("Sum of 1 to 10:", sum)?
+
+    // Nested loops - multiplication table
+    io.println("Multiplication table (3x3):")?
+    let row: i32 = 1
+    while row <= 3 {
+        let col: i32 = 1
+        while col <= 3 {
+            let product: i32 = row * col
+            io.print(product, " ")?
+            col = col + 1
+        }
+        io.println("")?
+        row = row + 1
+    }
+
+    // Boolean conditions
+    let is_logged_in: bool = true
+    let has_permission: bool = false
+
+    if is_logged_in && has_permission {
+        io.println("Access granted")?
+    } else if is_logged_in {
+        io.println("Logged in but no permission")?
+    } else {
+        io.println("Please log in")?
+    }
+
+    return Ok(void)
+}

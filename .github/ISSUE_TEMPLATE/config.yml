@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussion Forum
+    url: https://github.com/aigo-lang/aigo/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📖 Documentation
+    url: https://github.com/aigo-lang/aigo/blob/main/README.md
+    about: Read the documentation to learn more about AIGo
+  - name: 💡 Feature Ideas
+    url: https://github.com/aigo-lang/aigo/discussions/categories/ideas
+    about: Share and discuss new feature ideas

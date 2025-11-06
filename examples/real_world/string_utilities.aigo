@@ -1,0 +1,189 @@
+module main
+
+import std.io
+
+// String length
+fn string_length(s: string) -> i32 {
+    let len: i32 = 0
+    let i: i32 = 0
+
+    // Count characters until end
+    while s[i] != '\0' {
+        len = len + 1
+        i = i + 1
+    }
+
+    return len
+}
+
+// String reverse
+fn string_reverse(s: string) -> string {
+    let len: i32 = string_length(s)
+    let result: string = ""
+    let i: i32 = len - 1
+
+    while i >= 0 {
+        result = result + s[i]
+        i = i - 1
+    }
+
+    return result
+}
+
+// Check if string is palindrome
+fn is_palindrome(s: string) -> bool {
+    let len: i32 = string_length(s)
+    let left: i32 = 0
+    let right: i32 = len - 1
+
+    while left < right {
+        if s[left] != s[right] {
+            return false
+        }
+        left = left + 1
+        right = right - 1
+    }
+
+    return true
+}
+
+// Count vowels in string
+fn count_vowels(s: string) -> i32 {
+    let count: i32 = 0
+    let i: i32 = 0
+
+    while s[i] != '\0' {
+        let ch: char = s[i]
+        if ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+           ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' {
+            count = count + 1
+        }
+        i = i + 1
+    }
+
+    return count
+}
+
+// String to uppercase (ASCII only)
+fn to_uppercase(s: string) -> string {
+    let result: string = ""
+    let i: i32 = 0
+
+    while s[i] != '\0' {
+        let ch: char = s[i]
+        // Convert lowercase to uppercase (a-z -> A-Z)
+        if ch >= 'a' && ch <= 'z' {
+            let uppercase_ch: char = char(int(ch) - 32)
+            result = result + uppercase_ch
+        } else {
+            result = result + ch
+        }
+        i = i + 1
+    }
+
+    return result
+}
+
+// String to lowercase (ASCII only)
+fn to_lowercase(s: string) -> string {
+    let result: string = ""
+    let i: i32 = 0
+
+    while s[i] != '\0' {
+        let ch: char = s[i]
+        // Convert uppercase to lowercase (A-Z -> a-z)
+        if ch >= 'A' && ch <= 'Z' {
+            let lowercase_ch: char = char(int(ch) + 32)
+            result = result + lowercase_ch
+        } else {
+            result = result + ch
+        }
+        i = i + 1
+    }
+
+    return result
+}
+
+// Count word occurrences
+fn count_words(s: string) -> i32 {
+    let count: i32 = 0
+    let in_word: bool = false
+    let i: i32 = 0
+
+    while s[i] != '\0' {
+        if s[i] == ' ' || s[i] == '\t' || s[i] == '\n' {
+            in_word = false
+        } else {
+            if !in_word {
+                count = count + 1
+                in_word = true
+            }
+        }
+        i = i + 1
+    }
+
+    return count
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== String Utilities ===")?
+
+    // Test strings
+    let text1: string = "Hello, AIGo!"
+    let text2: string = "racecar"
+    let text3: string = "hello"
+    let text4: string = "The quick brown fox"
+
+    // String length
+    io.println("\n--- String Length ---")?
+    io.println("Length of '", text1, "':", string_length(text1))?
+    io.println("Length of '", text2, "':", string_length(text2))?
+
+    // String reverse
+    io.println("\n--- String Reverse ---")?
+    io.println("Original: ", text1)?
+    io.println("Reversed: ", string_reverse(text1))?
+    io.println("Original: ", text2)?
+    io.println("Reversed: ", string_reverse(text2))?
+
+    // Palindrome check
+    io.println("\n--- Palindrome Check ---")?
+    io.print("'", text2, "' is palindrome: ")?
+    io.println(is_palindrome(text2))?
+    io.print("'", text1, "' is palindrome: ")?
+    io.println(is_palindrome(text1))?
+
+    // Count vowels
+    io.println("\n--- Vowel Count ---")?
+    io.println("Vowels in '", text1, "':", count_vowels(text1))?
+    io.println("Vowels in '", text4, "':", count_vowels(text4))?
+
+    // Case conversion
+    io.println("\n--- Case Conversion ---")?
+    io.println("Original:  ", text3)?
+    io.println("Uppercase: ", to_uppercase(text3))?
+    io.println("Lowercase: ", to_lowercase("WORLD"))?
+
+    // Word count
+    io.println("\n--- Word Count ---")?
+    io.println("Words in '", text4, "':", count_words(text4))?
+    io.println("Words in 'one':", count_words("one"))?
+    io.println("Words in 'a b c d e':", count_words("a b c d e"))?
+
+    // String comparison examples
+    io.println("\n--- String Operations ---")?
+    let str1: string = "Hello"
+    let str2: string = "World"
+    let concatenated: string = str1 + " " + str2
+    io.println("Concatenation:", concatenated)?
+
+    let repeated: string = ""
+    let i: i32 = 0
+    while i < 3 {
+        repeated = repeated + str1 + " "
+        i = i + 1
+    }
+    io.println("Repeated:", repeated)?
+
+    return Ok(void)
+}
