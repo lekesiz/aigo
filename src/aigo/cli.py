@@ -83,5 +83,11 @@ def run_from_cli():
     sys.exit(main())
 
 
+def repl():
+    """Entry point for REPL command"""
+    from .repl import main as repl_main
+    sys.exit(repl_main())
+
+
 if __name__ == "__main__":
     sys.exit(main())

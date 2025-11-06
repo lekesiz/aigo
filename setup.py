@@ -79,9 +79,8 @@ setup(
     entry_points={
         "console_scripts": [
             "aigo=aigo.cli:main",
+            "aigo-repl=aigo.cli:repl",
             "aigo-run=aigo.interpreter:run_from_cli",
-            "aigo-test=aigo.test:run_tests",
-            "aigo-fmt=aigo.formatter:format_code",
         ],
     },
 
