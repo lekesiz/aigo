@@ -7,7 +7,14 @@ Simple interpreter for executing AIGo programs
 from typing import Dict, Any, List, Optional, Union
 from dataclasses import dataclass
 from .lexer import Lexer
-from .parser import *
+from .parser import (
+    Parser, Program, Expression, Statement,
+    IntegerLiteral, FloatLiteral, StringLiteral, BooleanLiteral,
+    Identifier, BinaryOperation, UnaryOperation, FunctionCall, FieldAccess,
+    VariableDeclaration, Assignment, ExpressionStatement, ReturnStatement,
+    IfStatement, WhileStatement, Block, FunctionDeclaration,
+    ImportStatement, Parameter, ParseError
+)
 
 class AIGoValue:
     """Base class for AIGo runtime values"""
