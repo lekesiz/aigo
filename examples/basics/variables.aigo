@@ -1,0 +1,34 @@
+module main
+
+import std.io
+
+fn main() -> Result<void, Error> {
+    // Integer variables
+    let age: i32 = 25
+    let year: i32 = 2024
+
+    // String variables
+    let name: string = "Alice"
+    let language: string = "AIGo"
+
+    // Boolean variables
+    let is_active: bool = true
+    let has_errors: bool = false
+
+    // Float variables
+    let pi: f64 = 3.14159
+    let temperature: f64 = 23.5
+
+    // Print variables
+    io.println("Name:", name)?
+    io.println("Age:", age)?
+    io.println("Language:", language)?
+    io.println("Active:", is_active)?
+    io.println("Pi:", pi)?
+
+    // Variable reassignment
+    age = age + 1
+    io.println("Age after birthday:", age)?
+
+    return Ok(void)
+}

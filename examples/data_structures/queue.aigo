@@ -1,0 +1,126 @@
+module main
+
+import std.io
+
+// Queue implementation using circular array
+struct Queue {
+    data: array<i32>
+    front: i32
+    rear: i32
+    size: i32
+    capacity: i32
+}
+
+fn queue_new(capacity: i32) -> Queue {
+    return Queue {
+        data: array<i32>(capacity, 0),
+        front: 0,
+        rear: -1,
+        size: 0,
+        capacity: capacity
+    }
+}
+
+fn queue_is_empty(q: Queue) -> bool {
+    return q.size == 0
+}
+
+fn queue_is_full(q: Queue) -> bool {
+    return q.size == q.capacity
+}
+
+fn queue_enqueue(q: Queue, value: i32) -> bool {
+    if queue_is_full(q) {
+        return false
+    }
+
+    q.rear = (q.rear + 1) % q.capacity
+    q.data[q.rear] = value
+    q.size = q.size + 1
+    return true
+}
+
+fn queue_dequeue(q: Queue) -> i32 {
+    if queue_is_empty(q) {
+        return -1  // Error value
+    }
+
+    let value: i32 = q.data[q.front]
+    q.front = (q.front + 1) % q.capacity
+    q.size = q.size - 1
+    return value
+}
+
+fn queue_front(q: Queue) -> i32 {
+    if queue_is_empty(q) {
+        return -1  // Error value
+    }
+    return q.data[q.front]
+}
+
+fn queue_size(q: Queue) -> i32 {
+    return q.size
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== Queue Data Structure ===")?
+
+    // Create a queue
+    let queue: Queue = queue_new(5)
+
+    // Enqueue elements
+    io.println("\nEnqueuing elements: 10, 20, 30, 40, 50")?
+    queue_enqueue(queue, 10)
+    queue_enqueue(queue, 20)
+    queue_enqueue(queue, 30)
+    queue_enqueue(queue, 40)
+    queue_enqueue(queue, 50)
+
+    io.println("Queue size:", queue_size(queue))?
+    io.println("Front element:", queue_front(queue))?
+
+    // Dequeue some elements
+    io.println("\nDequeuing 2 elements:")?
+    let val1: i32 = queue_dequeue(queue)
+    io.println("Dequeued:", val1)?
+    let val2: i32 = queue_dequeue(queue)
+    io.println("Dequeued:", val2)?
+
+    io.println("Queue size after dequeue:", queue_size(queue))?
+    io.println("New front element:", queue_front(queue))?
+
+    // Enqueue more elements
+    io.println("\nEnqueuing 60 and 70:")?
+    queue_enqueue(queue, 60)
+    queue_enqueue(queue, 70)
+
+    io.println("Queue size:", queue_size(queue))?
+
+    // Dequeue all elements
+    io.println("\nDequeuing all elements:")?
+    while !queue_is_empty(queue) {
+        let value: i32 = queue_dequeue(queue)
+        io.println("Dequeued:", value)?
+    }
+
+    io.println("Queue is now empty:", queue_is_empty(queue))?
+
+    // Demonstrate FIFO property
+    io.println("\n=== FIFO Property Demo ===")?
+    let q2: Queue = queue_new(10)
+
+    io.println("Enqueuing: 1, 2, 3, 4, 5")?
+    queue_enqueue(q2, 1)
+    queue_enqueue(q2, 2)
+    queue_enqueue(q2, 3)
+    queue_enqueue(q2, 4)
+    queue_enqueue(q2, 5)
+
+    io.print("Dequeuing order: ")?
+    while !queue_is_empty(q2) {
+        io.print(queue_dequeue(q2), " ")?
+    }
+    io.println("")?
+
+    return Ok(void)
+}

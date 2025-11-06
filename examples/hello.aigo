@@ -1,0 +1,9 @@
+module main
+
+import std.io
+
+fn main() -> Result<void, Error> {
+    let name: string = "AIGo"
+    io.println("Hello from", name, "!")?
+    return Ok(void)
+}

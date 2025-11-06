@@ -1,0 +1,60 @@
+module main
+
+import std.io
+
+// Iterative Fibonacci
+fn fib_iterative(n: i32) -> i32 {
+    if n <= 1 {
+        return n
+    }
+
+    let a: i32 = 0
+    let b: i32 = 1
+    let i: i32 = 2
+
+    while i <= n {
+        let temp: i32 = a + b
+        a = b
+        b = temp
+        i = i + 1
+    }
+
+    return b
+}
+
+// Recursive Fibonacci (simple version)
+fn fib_recursive(n: i32) -> i32 {
+    if n <= 1 {
+        return n
+    }
+    return fib_recursive(n - 1) + fib_recursive(n - 2)
+}
+
+fn main() -> Result<void, Error> {
+    io.println("=== Fibonacci Sequence ===")?
+
+    // Print first 10 Fibonacci numbers (iterative)
+    io.println("\nIterative approach:")?
+    let i: i32 = 0
+    while i <= 10 {
+        let fib: i32 = fib_iterative(i)
+        io.println("F(", i, ") =", fib)?
+        i = i + 1
+    }
+
+    // Compare iterative vs recursive for small numbers
+    io.println("\nRecursive approach (first 8):")?
+    let j: i32 = 0
+    while j <= 7 {
+        let fib: i32 = fib_recursive(j)
+        io.println("F(", j, ") =", fib)?
+        j = j + 1
+    }
+
+    // Calculate specific Fibonacci numbers
+    io.println("\nSpecific values:")?
+    io.println("F(15) =", fib_iterative(15))?
+    io.println("F(20) =", fib_iterative(20))?
+
+    return Ok(void)
+}

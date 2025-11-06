@@ -1,0 +1,139 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for AIGo
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please provide as much detail as possible.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have searched existing issues to ensure this hasn't been requested
+          required: true
+        - label: I have checked the roadmap to see if this is already planned
+          required: true
+        - label: This feature aligns with AIGo's goals and philosophy
+          required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - Language Feature
+        - Standard Library
+        - Tooling (CLI, REPL, etc.)
+        - Documentation
+        - Performance
+        - Developer Experience
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? Describe it clearly.
+      placeholder: I'm frustrated when... / It would be helpful if...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe how you'd like this feature to work
+      placeholder: |
+        I would like AIGo to support...
+
+        Example usage:
+        ```aigo
+        // Your example code here
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or features?
+      placeholder: I've also thought about... / Another approach could be...
+    validations:
+      required: false
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: How would this feature benefit AIGo users?
+      placeholder: |
+        - Improved developer productivity
+        - Better performance
+        - Easier to learn
+    validations:
+      required: false
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples from Other Languages
+      description: Are there similar features in other languages? How do they work?
+      placeholder: |
+        Rust has a similar feature...
+        Python implements this as...
+    validations:
+      required: false
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas
+      description: If you have ideas about how to implement this, share them
+      placeholder: This could be implemented by...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (Your Opinion)
+      description: How important is this feature to you?
+      options:
+        - Critical - Blocking my work
+        - High - Would significantly improve my workflow
+        - Medium - Would be nice to have
+        - Low - Minor improvement
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Would you be willing to contribute this feature?
+      options:
+        - Yes, I can implement this
+        - Yes, with guidance
+        - No, but I can help test
+        - No, I'm just suggesting
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other context, screenshots, or mockups
+      placeholder: Add any other information here
+    validations:
+      required: false

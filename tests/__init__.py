@@ -1,0 +1,3 @@
+"""
+AIGo Tests Package
+"""

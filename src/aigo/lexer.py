@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-AIGo Language Interpreter Prototype
-A simple interpreter for the AIGo programming language
+AIGo Language Lexer
+Lexical analyzer (tokenizer) for the AIGo programming language
 """
 
 import re

@@ -7,7 +7,7 @@ Builds Abstract Syntax Tree (AST) from tokens
 from typing import List, Optional, Union, Any
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
-from aigo_lexer import Token, TokenType, Lexer
+from .lexer import Token, TokenType, Lexer
 
 # AST Node Base Classes
 class ASTNode(ABC):

@@ -1,0 +1,63 @@
+module main
+
+import std.io
+
+// Simple function with single parameter
+fn square(x: i32) -> i32 {
+    return x * x
+}
+
+// Function with multiple parameters
+fn add(a: i32, b: i32) -> i32 {
+    return a + b
+}
+
+// Function with string parameters
+fn greet(name: string) -> string {
+    return "Hello, " + name + "!"
+}
+
+// Function with conditional logic
+fn max(a: i32, b: i32) -> i32 {
+    if a > b {
+        return a
+    } else {
+        return b
+    }
+}
+
+// Function with loop
+fn factorial(n: i32) -> i32 {
+    let result: i32 = 1
+    let i: i32 = 1
+    while i <= n {
+        result = result * i
+        i = i + 1
+    }
+    return result
+}
+
+fn main() -> Result<void, Error> {
+    // Test square function
+    let num: i32 = 5
+    let squared: i32 = square(num)
+    io.println("Square of", num, "is", squared)?
+
+    // Test add function
+    let sum: i32 = add(10, 20)
+    io.println("10 + 20 =", sum)?
+
+    // Test greet function
+    let message: string = greet("AIGo")
+    io.println(message)?
+
+    // Test max function
+    let maximum: i32 = max(42, 17)
+    io.println("Max of 42 and 17 is", maximum)?
+
+    // Test factorial function
+    let fact: i32 = factorial(5)
+    io.println("Factorial of 5 is", fact)?
+
+    return Ok(void)
+}
